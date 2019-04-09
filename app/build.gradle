@@ -1,0 +1,73 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+def libraries = rootProject.ext.libraries
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.demo.nytimesnews"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // Android Libs
+    implementation libraries.appCompat
+    implementation libraries.appSupport
+//    implementation libraries.appCardView
+    implementation libraries.supportDesign
+    implementation libraries.recycleView
+//    implementation libraries.glideVersion
+    annotationProcessor libraries.glideCompiler
+    implementation libraries.timber
+//    //databinding
+    implementation libraries.databinding
+    implementation libraries.lifecycleExtension
+    annotationProcessor libraries.lifecycleCompiler
+//    // RxAndroid
+    implementation libraries.rxAndroid
+    // RxJavax
+    implementation libraries.rxjava2
+    // Networking
+
+    implementation libraries.retrofitCore
+    implementation libraries.retrofitAdapter
+    implementation libraries.retrofitJson
+
+    // Dagger for Android
+    implementation libraries.daggerAndroid
+    implementation libraries.daggerSupport
+    // Dependency Injection Dagger2
+    implementation libraries.googleDagger
+    annotationProcessor libraries.daggerProcessor
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+repositories {
+    mavenCentral()
+}
