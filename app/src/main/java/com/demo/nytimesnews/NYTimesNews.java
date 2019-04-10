@@ -7,6 +7,8 @@ import com.demo.nytimesnews.di.MainAppComponent;
 import com.demo.nytimesnews.di.module.ContextModule;
 import com.demo.nytimesnews.di.module.NetworkModule;
 
+import timber.log.Timber;
+
 
 /**
  * Created by Rashida on 4/9/19.
@@ -29,8 +31,16 @@ public class NYTimesNews extends Application {
     public void onCreate() {
         super.onCreate();
         nyTimesNews = this;
+        initTimber();
         mainAppComponent = DaggerMainAppComponent.builder()
                 .contextModule(new ContextModule(this))
                 .networkModule(new NetworkModule()).build();
+    }
+
+
+    public static void initTimber() {
+        if (BuildConfig.DEBUG) {
+            Timber.plant(new Timber.DebugTree());
+        }
     }
 }

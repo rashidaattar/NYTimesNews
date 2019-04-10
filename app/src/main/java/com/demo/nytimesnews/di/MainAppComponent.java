@@ -7,10 +7,12 @@ import com.demo.nytimesnews.di.module.ContextModule;
 import com.demo.nytimesnews.di.module.NetworkModule;
 import com.demo.nytimesnews.di.module.NewsListModule;
 import com.demo.nytimesnews.di.module.RxModule;
+import com.demo.nytimesnews.di.qualifier.RetrofitQualifier;
 import com.demo.nytimesnews.di.scope.ApplicationScope;
 import com.demo.nytimesnews.feature.news.presentation.NewsListActivity;
 
 import dagger.Component;
+import retrofit2.Retrofit;
 
 /**
  * Created by Rashida on 4/9/19.
@@ -28,6 +30,9 @@ public interface MainAppComponent {
     Application getApplication();
 
     SchedulerProvider getSchedulerProvider();
+
+    @RetrofitQualifier
+    Retrofit retrofitNews();
 
     void inject(NewsListActivity newsListActivity);
 }

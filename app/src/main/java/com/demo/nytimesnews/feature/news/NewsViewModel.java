@@ -3,11 +3,13 @@ package com.demo.nytimesnews.feature.news;
 import android.app.Application;
 import android.support.annotation.NonNull;
 
-import com.demo.nytimesnews.base.model.BaseResponse;
 import com.demo.nytimesnews.base.utils.SchedulerProvider;
 import com.demo.nytimesnews.base.viewmodel.BaseViewModel;
 import com.demo.nytimesnews.base.viewmodel.SingleLiveEvent;
-import com.demo.nytimesnews.remote.NewsAPI;
+import com.demo.nytimesnews.remote.api.NewsAPI;
+import com.demo.nytimesnews.remote.model.NewsList;
+
+import timber.log.Timber;
 
 
 /**
@@ -18,10 +20,10 @@ public class NewsViewModel extends BaseViewModel {
     private NewsAPI newsAPI;
     private SchedulerProvider schedulerProvider;
 
-    private SingleLiveEvent<BaseResponse<String>> newsData = new SingleLiveEvent<>();
+    private SingleLiveEvent<NewsList> newsData = new SingleLiveEvent<>();
     private SingleLiveEvent<Integer> error = new SingleLiveEvent<>();
 
-    public SingleLiveEvent<BaseResponse<String>> getNewsData() {
+    public SingleLiveEvent<NewsList> getNewsData() {
         return newsData;
     }
 
@@ -37,6 +39,9 @@ public class NewsViewModel extends BaseViewModel {
 
 
     public void getNews() {
-        execute(schedulerProvider,newsAPI.getNews(), newsData, error);
+        execute(schedulerProvider, newsAPI.getNews(), newsList -> {
+            Timber.d("result size :" + newsList.getNumResults());
+            newsData.postValue(newsList);
+        }, error);
     }
 }

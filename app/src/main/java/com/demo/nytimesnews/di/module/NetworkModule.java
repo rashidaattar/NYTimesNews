@@ -38,7 +38,7 @@ public class NetworkModule {
     @Provides
     @ApplicationScope
     @RetrofitQualifier
-    public Retrofit retrofitEcommerce(OkHttpClient okHttpClient) {
+    public Retrofit retrofitNews(OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
                 .baseUrl("http://api.nytimes.com/svc/mostpopular/v2/")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

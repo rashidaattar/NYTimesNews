@@ -6,9 +6,11 @@ import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 
-import com.demo.nytimesnews.base.model.BaseResponse;
+import com.demo.nytimesnews.base.utils.ResponseHelper;
 import com.demo.nytimesnews.base.utils.RestHelper;
 import com.demo.nytimesnews.base.utils.SchedulerProvider;
+
+import java.util.function.Consumer;
 
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
@@ -22,7 +24,6 @@ public class BaseViewModel extends AndroidViewModel {
     @NonNull
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-    private SchedulerProvider schedulerProvider;
 
     public BaseViewModel(@NonNull Application application) {
         super(application);
@@ -36,19 +37,14 @@ public class BaseViewModel extends AndroidViewModel {
     }
 
 
-    protected <T> void execute(SchedulerProvider schedulerProvider, Observable<BaseResponse<T>> requestObservable, MutableLiveData<BaseResponse<T>> responseLiveData,
+    protected <T> void execute(SchedulerProvider schedulerProvider, Observable<T> requestObservable, Consumer<T> responseLiveData,
                                MutableLiveData<Integer> errorLiveData) {
-        this.schedulerProvider = schedulerProvider;
-
         compositeDisposable.add(RestHelper.makeRequest(schedulerProvider, requestObservable,
                 responseEntity -> {
-                    if (responseEntity instanceof BaseResponse) {
-                        BaseResponse baseResponse = (BaseResponse) responseEntity;
-
-                        responseLiveData.postValue(baseResponse);
-
-                    }
-
+                    if (responseEntity != null)
+                        responseLiveData.accept(responseEntity);
+                    else
+                        errorLiveData.postValue(ResponseHelper.OTHER);
                 },
                 errorEntity -> errorLiveData.postValue(errorEntity)));
     }

@@ -1,11 +1,7 @@
 package com.demo.nytimesnews.feature.news.presentation;
 
-import android.arch.lifecycle.Observer;
-import android.support.annotation.Nullable;
-
 import com.demo.nytimesnews.NYTimesNews;
 import com.demo.nytimesnews.R;
-import com.demo.nytimesnews.base.model.BaseResponse;
 import com.demo.nytimesnews.base.presentation.BaseActivity;
 import com.demo.nytimesnews.databinding.ActivityNewsListBinding;
 import com.demo.nytimesnews.feature.news.NewsViewModel;
@@ -30,7 +26,7 @@ public class NewsListActivity extends BaseActivity<ActivityNewsListBinding> {
 
     private void observeData() {
 
-        newsViewModel.getNewsData().observe(this, response -> Timber.d("response " + response));
+        newsViewModel.getNewsData().observe(this, response -> Timber.d("response " + response.getStatus()));
 
         newsViewModel.getError().observe(this, integer -> Timber.d("error"+integer));
     }

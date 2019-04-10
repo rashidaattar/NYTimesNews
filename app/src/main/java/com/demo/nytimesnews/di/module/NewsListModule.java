@@ -6,7 +6,7 @@ import com.demo.nytimesnews.base.utils.SchedulerProvider;
 import com.demo.nytimesnews.di.qualifier.RetrofitQualifier;
 import com.demo.nytimesnews.di.scope.ApplicationScope;
 import com.demo.nytimesnews.feature.news.NewsViewModel;
-import com.demo.nytimesnews.remote.NewsAPI;
+import com.demo.nytimesnews.remote.api.NewsAPI;
 
 import dagger.Module;
 import dagger.Provides;
