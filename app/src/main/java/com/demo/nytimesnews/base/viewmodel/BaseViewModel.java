@@ -36,8 +36,9 @@ public class BaseViewModel extends AndroidViewModel {
     }
 
 
-    protected <T> void execute(Observable<T> requestObservable, MutableLiveData<BaseResponse<T>> responseLiveData,
+    protected <T> void execute(SchedulerProvider schedulerProvider, Observable<BaseResponse<T>> requestObservable, MutableLiveData<BaseResponse<T>> responseLiveData,
                                MutableLiveData<Integer> errorLiveData) {
+        this.schedulerProvider = schedulerProvider;
 
         compositeDisposable.add(RestHelper.makeRequest(schedulerProvider, requestObservable,
                 responseEntity -> {
