@@ -1,4 +1,4 @@
-package com.demo.nytimesnews.feature.news.presentation;
+package com.demo.nytimesnews.feature.news.presentation.list;
 
 import com.demo.nytimesnews.NYTimesNews;
 import com.demo.nytimesnews.R;

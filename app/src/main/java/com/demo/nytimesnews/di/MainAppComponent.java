@@ -9,7 +9,7 @@ import com.demo.nytimesnews.di.module.NewsListModule;
 import com.demo.nytimesnews.di.module.RxModule;
 import com.demo.nytimesnews.di.qualifier.RetrofitQualifier;
 import com.demo.nytimesnews.di.scope.ApplicationScope;
-import com.demo.nytimesnews.feature.news.presentation.NewsListActivity;
+import com.demo.nytimesnews.feature.news.presentation.list.NewsListActivity;
 
 import dagger.Component;
 import retrofit2.Retrofit;

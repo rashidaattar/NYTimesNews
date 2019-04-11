@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by Rashida on 4/8/19.
  */
-public abstract class BaseAdapter<T> extends RecyclerView.Adapter {
+public abstract class BaseAdapter<T,E extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<E> {
 
     protected List<T> list;
 

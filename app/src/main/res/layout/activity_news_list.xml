@@ -7,17 +7,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".feature.news.presentation.NewsListActivity">
+        tools:context=".feature.news.presentation.list.NewsListActivity">
 
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-       <android.support.v7.widget.RecyclerView
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
+        <FrameLayout
+            android:id="@+id/news_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
+
+        </FrameLayout>
+
 
     </LinearLayout>
 </layout>
