@@ -1,4 +1,4 @@
-package com.demo.nytimesnews.remote;
+package com.demo.nytimesnews.base.viewmodel;
 
 import com.demo.nytimesnews.base.utils.SchedulerProvider;
 

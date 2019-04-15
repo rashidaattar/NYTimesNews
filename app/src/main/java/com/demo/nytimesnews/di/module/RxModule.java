@@ -2,7 +2,7 @@ package com.demo.nytimesnews.di.module;
 
 import com.demo.nytimesnews.base.utils.SchedulerProvider;
 import com.demo.nytimesnews.di.scope.ApplicationScope;
-import com.demo.nytimesnews.remote.AndroidSchedulerProvider;
+import com.demo.nytimesnews.base.viewmodel.AndroidSchedulerProvider;
 
 import dagger.Module;
 import dagger.Provides;
