@@ -15,7 +15,7 @@ Demo App using NY times News API
 ![alt text](https://github.com/rashidaattar/NYTimesNews/blob/master/app/src/main/res/screenshots/Screenshot_1555330958.png "Screenshot 1")
 ![alt text](https://github.com/rashidaattar/NYTimesNews/blob/master/app/src/main/res/screenshots/Screenshot_1555330965.png "Screenshot 2")
 
-##### Android Architecture Components used :
+##### TODO :
 1. Add test cases
 2. Add search functionality
 3. Add state transition animation
