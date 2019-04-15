@@ -1,5 +1,7 @@
 package com.demo.nytimesnews.feature.news.detail;
 
+import android.view.MenuItem;
+
 import com.demo.nytimesnews.NYTimesNews;
 import com.demo.nytimesnews.R;
 import com.demo.nytimesnews.base.presentation.BaseActivity;
@@ -29,5 +31,17 @@ public class NewsDetailActivity extends BaseActivity<ActivityNewsDetailBinding> 
     @Override
     public int getLayout() {
         return R.layout.activity_news_detail;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

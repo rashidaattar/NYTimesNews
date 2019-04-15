@@ -16,79 +16,89 @@
 
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="@color/colorAccent"
+        android:layout_marginTop="10dp">
 
-        <ImageView
-            android:id="@+id/image_view_thumbnail"
-            android:layout_width="50dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/text_view_title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:thumbnail="@{model.getMediaList().get(0)}"
-            tools:src="@tools:sample/avatars"
-            android:layout_margin="10dp"/>
-
-        <TextView
-            android:id="@+id/text_view_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="serif"
-            android:lines="2"
-            android:text="@{model.title}"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/text_view_author"
-            app:layout_constraintEnd_toStartOf="@id/image_view_chevron_right"
-            app:layout_constraintStart_toEndOf="@id/image_view_thumbnail"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textSize="15sp"
-            tools:text="@tools:sample/lorem" />
-
-        <TextView
-            android:id="@+id/text_view_author"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/text_View_date"
-            app:layout_constraintEnd_toStartOf="@id/image_view_chevron_right"
-            app:layout_constraintStart_toEndOf="@id/image_view_thumbnail"
-            app:layout_constraintTop_toBottomOf="@id/text_view_title"
-            android:text="@{model.byline}"
-            tools:text="@tools:sample/lorem"
-            android:layout_margin="10dp"/>
-
-        <TextView
-            android:id="@+id/text_View_date"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/text_view_author"
-            app:layout_constraintStart_toEndOf="@id/image_view_thumbnail"
-            android:drawableStart="@drawable/ic_calendar"
-            android:text="@{model.publishedDate}"
-            tools:text="@tools:sample/date/ddmmyy"
-            android:padding="10dp"/>
-
-        <ImageView
-            android:id="@+id/image_view_chevron_right"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_chevron_right"
-            android:onClick="@{() ->viewModel.goToDetails(model)}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/text_view_author"
-            android:padding="20dp"
-            app:layout_constraintBottom_toTopOf="@id/separator"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <View
-            android:id="@+id/separator"
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/divider"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            android:layout_height="wrap_content"
+            >
+
+            <ImageView
+                android:id="@+id/image_view_thumbnail"
+                android:layout_width="50dp"
+                android:layout_height="0dp"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/text_view_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:thumbnail="@{model.getMediaList().get(0)}"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/text_view_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:lines="2"
+                android:text="@{model.title}"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/text_view_author"
+                app:layout_constraintEnd_toStartOf="@id/image_view_chevron_right"
+                app:layout_constraintStart_toEndOf="@id/image_view_thumbnail"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@tools:sample/lorem" />
+
+            <TextView
+                android:id="@+id/text_view_author"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@{model.byline}"
+                app:layout_constraintBottom_toTopOf="@id/text_View_date"
+                app:layout_constraintEnd_toStartOf="@id/image_view_chevron_right"
+                app:layout_constraintStart_toEndOf="@id/image_view_thumbnail"
+                app:layout_constraintTop_toBottomOf="@id/text_view_title"
+                tools:text="@tools:sample/lorem" />
+
+            <TextView
+                android:id="@+id/text_View_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_calendar"
+                android:padding="10dp"
+                android:text="@{model.publishedDate}"
+                app:layout_constraintStart_toEndOf="@id/image_view_thumbnail"
+                app:layout_constraintTop_toBottomOf="@id/text_view_author"
+                tools:text="@tools:sample/date/ddmmyy" />
+
+            <ImageView
+                android:id="@+id/image_view_chevron_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() ->viewModel.goToDetails(model)}"
+                android:padding="20dp"
+                android:src="@drawable/ic_chevron_right"
+                app:layout_constraintBottom_toTopOf="@id/separator"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/text_view_author"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/separator"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/divider"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
 
-    </android.support.constraint.ConstraintLayout>
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
 </layout>

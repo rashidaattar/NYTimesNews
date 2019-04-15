@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@android:color/darker_gray"
+        android:background="@android:color/white"
         tools:context=".feature.news.list.NewsListActivity">
 
         <ProgressBar
@@ -21,7 +21,9 @@
                 android:id="@+id/news_list_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_news_list"
+                android:padding="10dp"/>
 
 
     </LinearLayout>
