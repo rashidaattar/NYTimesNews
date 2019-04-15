@@ -8,6 +8,7 @@ import com.demo.nytimesnews.base.viewmodel.BaseViewModel;
 import com.demo.nytimesnews.base.viewmodel.SingleLiveEvent;
 import com.demo.nytimesnews.remote.api.NewsAPI;
 import com.demo.nytimesnews.remote.model.NewsList;
+import com.demo.nytimesnews.remote.model.Results;
 
 import timber.log.Timber;
 
@@ -22,6 +23,9 @@ public class NewsViewModel extends BaseViewModel {
 
     private SingleLiveEvent<NewsList> newsData = new SingleLiveEvent<>();
     private SingleLiveEvent<Integer> error = new SingleLiveEvent<>();
+    private SingleLiveEvent<Boolean> goToDetailsLiveData = new SingleLiveEvent<>();
+
+    private Results selectedNewsItem;
 
     public SingleLiveEvent<NewsList> getNewsData() {
         return newsData;
@@ -29,6 +33,14 @@ public class NewsViewModel extends BaseViewModel {
 
     public SingleLiveEvent<Integer> getError() {
         return error;
+    }
+
+    public SingleLiveEvent<Boolean> getGoToDetailsLiveData() {
+        return goToDetailsLiveData;
+    }
+
+    public Results getSelectedNewsItem() {
+        return selectedNewsItem;
     }
 
     public NewsViewModel(@NonNull Application application, SchedulerProvider schedulerProvider, NewsAPI newsAPI) {
@@ -43,5 +55,10 @@ public class NewsViewModel extends BaseViewModel {
             Timber.d("result size :" + newsList.getNumResults());
             newsData.postValue(newsList);
         }, error);
+    }
+
+    public void goToDetails(Results results){
+        selectedNewsItem = results;
+        goToDetailsLiveData.postValue(true);
     }
 }

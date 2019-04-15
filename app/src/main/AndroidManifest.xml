@@ -12,13 +12,15 @@
         android:supportsRtl="true"
         android:name=".NYTimesNews"
         android:theme="@style/AppTheme">
-        <activity android:name=".feature.news.presentation.list.NewsListActivity">
+        <activity android:name=".feature.news.list.NewsListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".feature.news.detail.NewsDetailActivity"/>
     </application>
 
 </manifest>

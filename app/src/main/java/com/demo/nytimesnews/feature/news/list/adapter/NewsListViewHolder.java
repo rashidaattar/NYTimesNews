@@ -1,10 +1,9 @@
-package com.demo.nytimesnews.feature.news.presentation.adapter;
+package com.demo.nytimesnews.feature.news.list.adapter;
 
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import com.demo.nytimesnews.databinding.ItemNewsListBinding;
+import com.demo.nytimesnews.feature.news.NewsViewModel;
 import com.demo.nytimesnews.remote.model.Results;
 
 
@@ -20,7 +19,8 @@ public class NewsListViewHolder extends RecyclerView.ViewHolder {
         this.itemNewsListBinding = itemNewsListBinding;
     }
 
-    public void bindData(Results results){
-
+    public void bindData(Results results, NewsViewModel newsViewModel) {
+        itemNewsListBinding.setViewModel(newsViewModel);
+        itemNewsListBinding.setModel(results);
     }
 }

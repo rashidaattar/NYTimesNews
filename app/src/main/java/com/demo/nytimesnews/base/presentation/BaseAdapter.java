@@ -13,6 +13,7 @@ public abstract class BaseAdapter<T,E extends RecyclerView.ViewHolder> extends R
 
     public void setData(List<T> list) {
         this.list = list;
+        notifyDataSetChanged();
     }
 
     @Override

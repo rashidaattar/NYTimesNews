@@ -6,6 +6,7 @@ import com.demo.nytimesnews.base.utils.SchedulerProvider;
 import com.demo.nytimesnews.di.qualifier.RetrofitQualifier;
 import com.demo.nytimesnews.di.scope.ApplicationScope;
 import com.demo.nytimesnews.feature.news.NewsViewModel;
+import com.demo.nytimesnews.feature.news.list.adapter.NewsListAdapter;
 import com.demo.nytimesnews.remote.api.NewsAPI;
 
 import dagger.Module;
@@ -20,7 +21,6 @@ import retrofit2.Retrofit;
 public class NewsListModule {
 
     @Provides
-    @ApplicationScope
     NewsAPI newsAPI(@RetrofitQualifier Retrofit retrofit) {
         return retrofit.create(NewsAPI.class);
     }
@@ -29,6 +29,11 @@ public class NewsListModule {
     @ApplicationScope
     NewsViewModel newsViewModel(Application application, SchedulerProvider schedulerProvider, NewsAPI newsAPI) {
         return new NewsViewModel(application, schedulerProvider, newsAPI);
+    }
+
+    @Provides
+    NewsListAdapter newsListAdapter(NewsViewModel newsViewModel){
+        return new NewsListAdapter(newsViewModel);
     }
 
 }

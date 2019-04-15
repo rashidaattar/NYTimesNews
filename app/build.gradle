@@ -57,6 +57,9 @@ dependencies {
     implementation libraries.retrofitAdapter
     implementation libraries.retrofitJson
 
+    //glide
+    implementation libraries.glideVersion
+
     // Dagger for Android
     implementation libraries.daggerAndroid
     implementation libraries.daggerSupport
@@ -64,6 +67,8 @@ dependencies {
     implementation libraries.googleDagger
     annotationProcessor libraries.daggerCompiler
     annotationProcessor libraries.daggerProcessor
+    annotationProcessor libraries.glideCompiler
+
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     kapt 'com.google.dagger:dagger-android-processor:2.15'

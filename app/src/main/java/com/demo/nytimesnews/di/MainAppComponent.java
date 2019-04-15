@@ -9,7 +9,8 @@ import com.demo.nytimesnews.di.module.NewsListModule;
 import com.demo.nytimesnews.di.module.RxModule;
 import com.demo.nytimesnews.di.qualifier.RetrofitQualifier;
 import com.demo.nytimesnews.di.scope.ApplicationScope;
-import com.demo.nytimesnews.feature.news.presentation.list.NewsListActivity;
+import com.demo.nytimesnews.feature.news.detail.NewsDetailActivity;
+import com.demo.nytimesnews.feature.news.list.NewsListActivity;
 
 import dagger.Component;
 import retrofit2.Retrofit;
@@ -35,4 +36,6 @@ public interface MainAppComponent {
     Retrofit retrofitNews();
 
     void inject(NewsListActivity newsListActivity);
+
+    void inject(NewsDetailActivity newsDetailActivity);
 }
