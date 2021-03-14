@@ -40,7 +40,7 @@ public class NetworkModule {
     @RetrofitQualifier
     public Retrofit retrofitNews(OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
-                .baseUrl("http://api.nytimes.com/svc/mostpopular/v2/")
+                .baseUrl("https://api.nytimes.com/svc/mostpopular/v2/")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())

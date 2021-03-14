@@ -56,7 +56,9 @@ public class NewsListActivity extends BaseActivity<ActivityNewsListBinding> {
             public void onChanged(@Nullable Boolean goToDetails) {
 
                 if (goToDetails) {
-                    startActivity(new Intent(NewsListActivity.this, NewsDetailActivity.class));
+                    Intent intent = new Intent(NewsListActivity.this,NewsDetailActivity.class);
+                    intent.putExtra("URL",newsViewModel.getSelectedNewsItem().getUrl());
+                    startActivity(intent);
                 }
             }
         });

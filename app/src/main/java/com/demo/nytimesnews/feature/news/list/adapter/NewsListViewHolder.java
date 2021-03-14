@@ -22,5 +22,6 @@ public class NewsListViewHolder extends RecyclerView.ViewHolder {
     public void bindData(Results results, NewsViewModel newsViewModel) {
         itemNewsListBinding.setViewModel(newsViewModel);
         itemNewsListBinding.setModel(results);
+        itemNewsListBinding.executePendingBindings();
     }
 }

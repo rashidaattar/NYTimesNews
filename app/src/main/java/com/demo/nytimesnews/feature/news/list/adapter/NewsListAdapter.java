@@ -46,4 +46,5 @@ public class NewsListAdapter extends BaseAdapter<Results, NewsListViewHolder> {
             }
         }
     }
+
 }

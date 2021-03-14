@@ -37,5 +37,4 @@ public interface MainAppComponent {
 
     void inject(NewsListActivity newsListActivity);
 
-    void inject(NewsDetailActivity newsDetailActivity);
 }

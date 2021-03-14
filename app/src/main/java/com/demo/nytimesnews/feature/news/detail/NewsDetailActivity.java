@@ -16,14 +16,10 @@ import javax.inject.Inject;
  */
 public class NewsDetailActivity extends BaseActivity<ActivityNewsDetailBinding> {
 
-    @Inject
-    NewsViewModel newsViewModel;
 
     @Override
     protected void initViews() {
-        NYTimesNews.get().getMainAppComponent().inject(this);
-        binding.setModel(newsViewModel.getSelectedNewsItem());
-        binding.urlWebview.loadUrl(newsViewModel.getSelectedNewsItem().getUrl());
+        binding.urlWebview.loadUrl(getIntent().getStringExtra("URL"));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
     }
