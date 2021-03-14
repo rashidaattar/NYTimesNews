@@ -13,7 +13,7 @@ Demo App using NY times News API
 
 ##### Screenshots
 ![alt text](https://github.com/rashidaattar/NYTimesNews/blob/master/app/src/main/screenshots/Screenshot_1555330958.png "Screenshot 1")
-![alt text](https://github.com/rashidaattar/NYTimesNews/blob/master/app/src/main/screenshots/Screenshot_1615742772.png "Screenshot 2")
+![alt text](https://github.com/rashidaattar/NYTimesNews/blob/master/app/src/main/screenshots/Screenshot_1615742778.png "Screenshot 2")
 
 ##### TODO :
 1. Add test cases
