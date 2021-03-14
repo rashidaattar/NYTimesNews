@@ -6,6 +6,7 @@ import com.demo.nytimesnews.base.viewmodel.SingleLiveEvent
 import com.demo.nytimesnews.remote.api.NewsAPI
 import com.demo.nytimesnews.remote.model.NewsList
 import com.demo.nytimesnews.remote.model.Results
+import io.reactivex.functions.Consumer
 import timber.log.Timber
 
 /**
@@ -20,10 +21,10 @@ class NewsViewModel(application: Application,
     var selectedNewsItem: Results? = null
 
     fun getNews() {
-        execute( newsAPI.getNews1(), { newsList: NewsList ->
+
+        execute(newsAPI.getNews1(), Consumer { newsList: NewsList ->
             Timber.d("result size :" + newsList.numResults)
-            newsData.postValue(newsList)
-        }, error)
+            newsData.postValue(newsList) }, error)
     }
 
     fun goToDetails(results: Results?) {

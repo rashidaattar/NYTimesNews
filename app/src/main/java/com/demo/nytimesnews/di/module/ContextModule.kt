@@ -1,38 +1,24 @@
-package com.demo.nytimesnews.di.module;
+package com.demo.nytimesnews.di.module
 
-import android.app.Application;
-import android.content.Context;
-
-import com.demo.nytimesnews.di.scope.FeatureScope;
-
-import dagger.Module;
-import dagger.Provides;
+import android.app.Application
+import android.content.Context
+import com.demo.nytimesnews.di.scope.FeatureScope
+import dagger.Module
+import dagger.Provides
 
 /**
  * Created by Rashida on 4/9/19.
  */
-
 @Module
-public class ContextModule {
-
-    private final Context context;
-    private final Application application;
-
-    public ContextModule(Application application) {
-        this.application = application;
-        this.context = application.getApplicationContext();
-    }
-
+class ContextModule(@get:Provides @get:FeatureScope val application: Application) {
+    private val context: Context
     @Provides
     @FeatureScope
-    public Context context() {
-        return context;
+    fun context(): Context {
+        return context
     }
 
-
-    @Provides
-    @FeatureScope
-    public Application getApplication() {
-        return application;
+    init {
+        context = application.applicationContext
     }
 }
