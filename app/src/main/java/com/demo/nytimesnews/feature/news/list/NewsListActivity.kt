@@ -11,7 +11,7 @@ import com.demo.nytimesnews.di.DaggerMainAppComponent
 import com.demo.nytimesnews.di.module.ContextModule
 import com.demo.nytimesnews.di.module.NetworkModule
 import com.demo.nytimesnews.feature.news.NewsViewModel
-import com.demo.nytimesnews.feature.news.detail.NewsDetailActivity
+import com.demo.nytimesnews.feature.news.detail.NewsDetailFragment
 import com.demo.nytimesnews.feature.news.list.adapter.NewsListAdapter
 import com.demo.nytimesnews.remote.model.NewsList
 import timber.log.Timber
@@ -49,9 +49,11 @@ class NewsListActivity : BaseActivity<ActivityNewsListBinding?>() {
         })
         newsViewModel.goToDetailsLiveData.observe(this, Observer { goToDetails ->
             if (goToDetails!!) {
-                val intent = Intent(this@NewsListActivity, NewsDetailActivity::class.java)
-                intent.putExtra("URL", newsViewModel.selectedNewsItem?.url)
-                startActivity(intent)
+                newsViewModel.selectedNewsItem?.url?.let {
+                    val fragment = NewsDetailFragment.getInstance(it)
+                    fragment.show(supportFragmentManager,"bottomsheet")
+                }
+
             }
         })
     }
