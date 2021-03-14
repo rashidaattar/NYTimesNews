@@ -16,25 +16,19 @@ import timber.log.Timber;
 public class NYTimesNews extends Application {
 
 
-    MainAppComponent mainAppComponent;
     private static NYTimesNews nyTimesNews;
 
     public static NYTimesNews get() {
         return nyTimesNews;
     }
 
-    public  MainAppComponent getMainAppComponent() {
-        return mainAppComponent;
-    }
+
 
     @Override
     public void onCreate() {
         super.onCreate();
         nyTimesNews = this;
         initTimber();
-        mainAppComponent = DaggerMainAppComponent.builder()
-                .contextModule(new ContextModule(this))
-                .networkModule(new NetworkModule()).build();
     }
 
 

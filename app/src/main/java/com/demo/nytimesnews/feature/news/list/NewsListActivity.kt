@@ -7,6 +7,9 @@ import com.demo.nytimesnews.NYTimesNews
 import com.demo.nytimesnews.R
 import com.demo.nytimesnews.base.presentation.BaseActivity
 import com.demo.nytimesnews.databinding.ActivityNewsListBinding
+import com.demo.nytimesnews.di.DaggerMainAppComponent
+import com.demo.nytimesnews.di.module.ContextModule
+import com.demo.nytimesnews.di.module.NetworkModule
 import com.demo.nytimesnews.feature.news.NewsViewModel
 import com.demo.nytimesnews.feature.news.detail.NewsDetailActivity
 import com.demo.nytimesnews.feature.news.list.adapter.NewsListAdapter
@@ -23,7 +26,8 @@ class NewsListActivity : BaseActivity<ActivityNewsListBinding?>() {
 
 
     override fun initViews() {
-        NYTimesNews.get().mainAppComponent.inject(this)
+        DaggerMainAppComponent.builder().contextModule(ContextModule(NYTimesNews.get()))
+            .networkModule(NetworkModule()).build().inject(this)
         binding?.newsListView?.adapter = newsListAdapter
         supportActionBar?.title = "NY TIMES NEWS"
         binding?.progressBar?.visibility = View.VISIBLE

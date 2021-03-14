@@ -1,7 +1,7 @@
 package com.demo.nytimesnews.di.module;
 
 import com.demo.nytimesnews.di.qualifier.RetrofitQualifier;
-import com.demo.nytimesnews.di.scope.ApplicationScope;
+import com.demo.nytimesnews.di.scope.FeatureScope;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.concurrent.TimeUnit;
@@ -36,7 +36,7 @@ public class NetworkModule {
     }
 
     @Provides
-    @ApplicationScope
+    @FeatureScope
     @RetrofitQualifier
     public Retrofit retrofitNews(OkHttpClient okHttpClient) {
         return new Retrofit.Builder()

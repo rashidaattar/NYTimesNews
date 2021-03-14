@@ -3,7 +3,7 @@ package com.demo.nytimesnews.di.module;
 import android.app.Application;
 import android.content.Context;
 
-import com.demo.nytimesnews.di.scope.ApplicationScope;
+import com.demo.nytimesnews.di.scope.FeatureScope;
 
 import dagger.Module;
 import dagger.Provides;
@@ -24,14 +24,14 @@ public class ContextModule {
     }
 
     @Provides
-    @ApplicationScope
+    @FeatureScope
     public Context context() {
         return context;
     }
 
 
     @Provides
-    @ApplicationScope
+    @FeatureScope
     public Application getApplication() {
         return application;
     }

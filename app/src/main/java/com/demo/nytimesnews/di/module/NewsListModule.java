@@ -3,7 +3,7 @@ package com.demo.nytimesnews.di.module;
 import android.app.Application;
 
 import com.demo.nytimesnews.di.qualifier.RetrofitQualifier;
-import com.demo.nytimesnews.di.scope.ApplicationScope;
+import com.demo.nytimesnews.di.scope.FeatureScope;
 import com.demo.nytimesnews.feature.news.NewsViewModel;
 import com.demo.nytimesnews.feature.news.list.adapter.NewsListAdapter;
 import com.demo.nytimesnews.remote.api.NewsAPI;
@@ -25,7 +25,7 @@ public class NewsListModule {
     }
 
     @Provides
-    @ApplicationScope
+    @FeatureScope
     NewsViewModel newsViewModel(Application application, NewsAPI newsAPI) {
         return new NewsViewModel(application, newsAPI);
     }
