@@ -12,8 +12,8 @@ Demo App using NY times News API
 ##### Glide for loading images
 
 ##### Screenshots
-![alt text](https://github.com/rashidaattar/NYTimesNews/blob/master/app/src/main/res/screenshots/Screenshot_1555330958.png "Screenshot 1")
-![alt text](https://github.com/rashidaattar/NYTimesNews/blob/master/app/src/main/res/screenshots/Screenshot_1555330965.png "Screenshot 2")
+![alt text](https://github.com/rashidaattar/NYTimesNews/blob/master/app/src/main/screenshots/Screenshot_1555330958.png "Screenshot 1")
+![alt text](https://github.com/rashidaattar/NYTimesNews/blob/master/app/src/main/screenshots/Screenshot_1555330965.png "Screenshot 2")
 
 ##### TODO :
 1. Add test cases
