@@ -1,71 +1,57 @@
-package com.demo.nytimesnews.feature.news.list;
+package com.demo.nytimesnews.feature.news.list
 
-import android.arch.lifecycle.Observer;
-import android.content.Intent;
-import android.support.annotation.Nullable;
-import android.view.View;
+import android.arch.lifecycle.Observer
+import android.content.Intent
+import android.view.View
+import com.demo.nytimesnews.NYTimesNews
+import com.demo.nytimesnews.R
+import com.demo.nytimesnews.base.presentation.BaseActivity
+import com.demo.nytimesnews.databinding.ActivityNewsListBinding
+import com.demo.nytimesnews.feature.news.NewsViewModel
+import com.demo.nytimesnews.feature.news.detail.NewsDetailActivity
+import com.demo.nytimesnews.feature.news.list.adapter.NewsListAdapter
+import com.demo.nytimesnews.remote.model.NewsList
+import timber.log.Timber
+import javax.inject.Inject
 
-import com.demo.nytimesnews.NYTimesNews;
-import com.demo.nytimesnews.R;
-import com.demo.nytimesnews.base.presentation.BaseActivity;
-import com.demo.nytimesnews.databinding.ActivityNewsListBinding;
-import com.demo.nytimesnews.feature.news.NewsViewModel;
-import com.demo.nytimesnews.feature.news.detail.NewsDetailActivity;
-import com.demo.nytimesnews.feature.news.list.adapter.NewsListAdapter;
-
-import javax.inject.Inject;
-
-import timber.log.Timber;
-
-public class NewsListActivity extends BaseActivity<ActivityNewsListBinding> {
+class NewsListActivity : BaseActivity<ActivityNewsListBinding?>() {
+    @Inject
+    lateinit var newsViewModel: NewsViewModel
 
     @Inject
-    NewsViewModel newsViewModel;
+    lateinit var newsListAdapter: NewsListAdapter
 
-    @Inject
-    NewsListAdapter newsListAdapter;
 
-    @Override
-    protected void initViews() {
-        NYTimesNews.get().getMainAppComponent().inject(this);
-        binding.newsListView.setAdapter(newsListAdapter);
-        getSupportActionBar().setTitle("NY TIMES NEWS");
-        binding.progressBar.setVisibility(View.VISIBLE);
-        newsViewModel.getNews();
-        observeData();
+    override fun initViews() {
+        NYTimesNews.get().mainAppComponent.inject(this)
+        binding?.newsListView?.adapter = newsListAdapter
+        supportActionBar?.title = "NY TIMES NEWS"
+        binding?.progressBar?.visibility = View.VISIBLE
+        newsViewModel.getNews()
+        observeData()
     }
 
-    private void observeData() {
-
-        newsViewModel.getNewsData().observe(this, response -> {
-            Timber.d("response " + response.getStatus());
-            if (response.getStatus().equalsIgnoreCase("OK")) {
-                binding.progressBar.setVisibility(View.GONE);
-                newsListAdapter.setData(response.getResultsList());
+    private fun observeData() {
+        newsViewModel.newsData.observe(this, Observer { response: NewsList? ->
+            Timber.d("response " + response!!.status)
+            if (response.status.equals("OK", ignoreCase = true)) {
+                binding!!.progressBar.visibility = View.GONE
+                newsListAdapter.setData(response.resultsList)
             }
-        });
-
-        newsViewModel.getError().observe(this, integer -> {
-                    Timber.d("error" + integer);
-                    binding.progressBar.setVisibility(View.GONE);
-                }
-        );
-
-        newsViewModel.getGoToDetailsLiveData().observe(this, new Observer<Boolean>() {
-            @Override
-            public void onChanged(@Nullable Boolean goToDetails) {
-
-                if (goToDetails) {
-                    Intent intent = new Intent(NewsListActivity.this,NewsDetailActivity.class);
-                    intent.putExtra("URL",newsViewModel.getSelectedNewsItem().getUrl());
-                    startActivity(intent);
-                }
+        })
+        newsViewModel.error.observe(this, Observer { integer: Int? ->
+            Timber.d("error$integer")
+            binding!!.progressBar.visibility = View.GONE
+        })
+        newsViewModel.goToDetailsLiveData.observe(this, Observer { goToDetails ->
+            if (goToDetails!!) {
+                val intent = Intent(this@NewsListActivity, NewsDetailActivity::class.java)
+                intent.putExtra("URL", newsViewModel.selectedNewsItem.url)
+                startActivity(intent)
             }
-        });
+        })
     }
 
-    @Override
-    public int getLayout() {
-        return R.layout.activity_news_list;
-    }
+    override val layout: Int = R.layout.activity_news_list
+
 }
