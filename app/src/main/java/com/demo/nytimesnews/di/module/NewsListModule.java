@@ -2,7 +2,6 @@ package com.demo.nytimesnews.di.module;
 
 import android.app.Application;
 
-import com.demo.nytimesnews.base.utils.SchedulerProvider;
 import com.demo.nytimesnews.di.qualifier.RetrofitQualifier;
 import com.demo.nytimesnews.di.scope.ApplicationScope;
 import com.demo.nytimesnews.feature.news.NewsViewModel;
@@ -27,8 +26,8 @@ public class NewsListModule {
 
     @Provides
     @ApplicationScope
-    NewsViewModel newsViewModel(Application application, SchedulerProvider schedulerProvider, NewsAPI newsAPI) {
-        return new NewsViewModel(application, schedulerProvider, newsAPI);
+    NewsViewModel newsViewModel(Application application, NewsAPI newsAPI) {
+        return new NewsViewModel(application, newsAPI);
     }
 
     @Provides

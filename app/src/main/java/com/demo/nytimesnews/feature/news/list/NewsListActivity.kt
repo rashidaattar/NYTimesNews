@@ -46,7 +46,7 @@ class NewsListActivity : BaseActivity<ActivityNewsListBinding?>() {
         newsViewModel.goToDetailsLiveData.observe(this, Observer { goToDetails ->
             if (goToDetails!!) {
                 val intent = Intent(this@NewsListActivity, NewsDetailActivity::class.java)
-                intent.putExtra("URL", newsViewModel.selectedNewsItem.url)
+                intent.putExtra("URL", newsViewModel.selectedNewsItem?.url)
                 startActivity(intent)
             }
         })

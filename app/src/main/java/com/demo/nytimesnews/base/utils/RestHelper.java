@@ -4,8 +4,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
 /**
@@ -22,13 +24,13 @@ public class RestHelper {
      */
 
 
-    public static <T> Disposable makeRequest(SchedulerProvider schedulerProvider,
+    public static <T> Disposable makeRequest(
                                              Observable<T> request,
                                              @NonNull Consumer<T> responseConsumer,
                                              @Nullable Consumer<Integer> errorConsumer) {
-        return request.subscribeOn(schedulerProvider.io())
-                .observeOn(schedulerProvider.ui())
-                .unsubscribeOn(schedulerProvider.io())
+        return request.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .unsubscribeOn(Schedulers.io())
                 .subscribe(responseConsumer, throwable -> {
 
                     errorConsumer.accept(ResponseHelper.getErrorState(throwable));

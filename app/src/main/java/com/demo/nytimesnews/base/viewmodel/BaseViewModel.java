@@ -8,7 +8,6 @@ import android.support.annotation.NonNull;
 
 import com.demo.nytimesnews.base.utils.ResponseHelper;
 import com.demo.nytimesnews.base.utils.RestHelper;
-import com.demo.nytimesnews.base.utils.SchedulerProvider;
 
 import java.util.function.Consumer;
 
@@ -37,9 +36,9 @@ public class BaseViewModel extends AndroidViewModel {
     }
 
 
-    protected <T> void execute(SchedulerProvider schedulerProvider, Observable<T> requestObservable, Consumer<T> responseLiveData,
+    protected <T> void execute( Observable<T> requestObservable, Consumer<T> responseLiveData,
                                MutableLiveData<Integer> errorLiveData) {
-        compositeDisposable.add(RestHelper.makeRequest(schedulerProvider, requestObservable,
+        compositeDisposable.add(RestHelper.makeRequest( requestObservable,
                 responseEntity -> {
                     if (responseEntity != null)
                         responseLiveData.accept(responseEntity);
